@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Pagination } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Pagination } from 'react-bootstrap';
 
-const Paginator = ({ current, changePageCallback, hasPrev, hasNext, hide, searching, sorting }) => {
+const Paginator = ({
+  current,
+  changePageCallback,
+  hasPrev,
+  hasNext,
+  hide,
+  searching,
+  sorting,
+}) => {
   const [currentPage, setCurrentPage] = useState(current);
 
   useEffect(() => {
@@ -26,11 +34,19 @@ const Paginator = ({ current, changePageCallback, hasPrev, hasNext, hide, search
   return (
     !hide && (
       <Pagination className="paginator">
-        <Pagination.Prev disabled={!hasPrev} style={{ width: "75px" }} onClick={toPrevPage} />
+        <Pagination.Prev
+          disabled={!hasPrev}
+          style={{ width: '75px' }}
+          onClick={toPrevPage}
+        />
         <Pagination.Ellipsis disabled={!hasPrev} />
         <Pagination.Item>{currentPage}</Pagination.Item>
         <Pagination.Ellipsis disabled={!hasNext} />
-        <Pagination.Next disabled={!hasNext} style={{ width: "75px" }} onClick={toNextPage} />
+        <Pagination.Next
+          disabled={!hasNext}
+          style={{ width: '75px' }}
+          onClick={toNextPage}
+        />
       </Pagination>
     )
   );

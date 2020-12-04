@@ -3,21 +3,28 @@
   text-align: center;
 }
 
+.appTitle {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 'bold';
+  color: #2b7d24;
+  cursor: pointer;
+  display: inline;
+  user-select: none;
+}
+
+.appTitle:hover {
+  color: #145927;
+}
+
+.appSubTitle {
+  font-family: 'Ubuntu', sans-serif;
+  color: #0e49b5 !important;
+  margin-top: 10px;
+}
+
 .paginator {
   display: flex;
   flex-direction: row;
   justify-content: center;
   user-select: none;
-}
-
-.appTitle {
-  font-family: "PT Sans", sans-serif;
-  font-weight: "bold";
-  color: #154661;
-  cursor: pointer;
-  user-select: none;
-}
-
-.appTitle:hover {
-  color: #1f8615;
 }

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Form, Button } from "react-bootstrap";
-import "./AddProduct.css";
-import axios from "axios";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Form, Button } from 'react-bootstrap';
+import './AddProduct.css';
+import axios from 'axios';
 
 const SingleProduct = (props) => {
-  const [name, setName] = useState("");
-  const [code, setCode] = useState("");
-  const [category, setCategory] = useState("Food");
-  const [status, setStatus] = useState("Available");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [code, setCode] = useState('');
+  const [category, setCategory] = useState('Food');
+  const [status, setStatus] = useState('Available');
+  const [description, setDescription] = useState('');
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -23,28 +23,25 @@ const SingleProduct = (props) => {
       description: data.description,
     };
 
-    await axios.post("http://localhost:5000/api/products", newProduct);
+    await axios.post('http://localhost:5000/api/products', newProduct);
 
-    console.log("<<<submitted successfully>>");
-    props.history.push("/");
+    props.history.push('/');
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    props.history.push("/");
+    props.history.push('/');
   };
 
   const form = (
     <div>
       <div className="title">
-        <h2 style={{ fontWeight: "bold", color: "#222831", fontFamily: "PT Sans" }}>
-          PRODUCTS MANAGEMENT
-        </h2>
-        <h4 style={{ color: "#1395BA" }}>Add Product</h4>
+        <h2 className="appTitle">PRODUCT MANAGEMENT APP</h2>
+        <h4 className="appSubTitle">Add Product</h4>
       </div>
 
       <Form className="add-form" onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group style={{ marginBottom: "25px" }}>
+        <Form.Group style={{ marginBottom: '25px' }}>
           <Form.Label>Product Name</Form.Label>
           <Form.Control
             name="name"
@@ -55,12 +52,14 @@ const SingleProduct = (props) => {
             onChange={(event) => setName(event.target.value)}
           ></Form.Control>
           {errors.name && (
-            <span style={{ color: "red", fontSize: "0.7rem", position: "absolute" }}>
+            <span
+              style={{ color: 'red', fontSize: '0.7rem', position: 'absolute' }}
+            >
               This field is required
             </span>
           )}
         </Form.Group>
-        <Form.Group style={{ marginBottom: "25px" }}>
+        <Form.Group style={{ marginBottom: '25px' }}>
           <Form.Label>Product Code</Form.Label>
           <Form.Control
             name="code"
@@ -71,7 +70,9 @@ const SingleProduct = (props) => {
             onChange={(event) => setCode(event.target.value)}
           ></Form.Control>
           {errors.code && (
-            <span style={{ color: "red", fontSize: "0.7rem", position: "absolute" }}>
+            <span
+              style={{ color: 'red', fontSize: '0.7rem', position: 'absolute' }}
+            >
               This field is required
             </span>
           )}
@@ -104,7 +105,7 @@ const SingleProduct = (props) => {
             <option>Unavailable</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group style={{ marginBottom: "25px" }}>
+        <Form.Group style={{ marginBottom: '25px' }}>
           <Form.Label>Product Description</Form.Label>
           <Form.Control
             name="description"
@@ -117,12 +118,21 @@ const SingleProduct = (props) => {
         </Form.Group>
         {errors.description && (
           <span
-            style={{ color: "red", fontSize: "0.7rem", position: "absolute", marginTop: "-25px" }}
+            style={{
+              color: 'red',
+              fontSize: '0.7rem',
+              position: 'absolute',
+              marginTop: '-25px',
+            }}
           >
             Please provide description and less than 250 characters.
           </span>
         )}
-        <Button variant="primary" style={{ margin: "0px 10px 0px 0px" }} type="submit">
+        <Button
+          variant="primary"
+          style={{ margin: '0px 10px 0px 0px' }}
+          type="submit"
+        >
           Submit
         </Button>
         <Button variant="danger" onClick={handleCancel}>

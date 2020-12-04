@@ -41,8 +41,8 @@ const App = (props) => {
 
   const sortProductHandler = async (field, value) => {
     setLoading(true);
-    setSearching(false);
     setSorting(true);
+    setSearching(false);
     setCurUrl(
       `http://localhost:5000/api/search?field=${field}&value=${value}&sort=true`
     );
@@ -107,19 +107,19 @@ const App = (props) => {
         <h2 onClick={refreshPage} className="appTitle">
           PRODUCT MANAGEMENT APP
         </h2>
-        <h4 style={{ color: '#0e49b5' }}>Products Listing</h4>
-        <TopBar searchCallback={searchProductHandler} />
-        {productList}
-        <Paginator
-          hide={loading}
-          current={1}
-          searching={searching}
-          sorting={sorting}
-          changePageCallback={changePageHandler}
-          hasPrev={products.pagination ? !!products.pagination.prev : false}
-          hasNext={products.pagination ? !!products.pagination.next : false}
-        />
+        <h4 className="appSubTitle">Products Listing</h4>
       </div>
+      <TopBar searchCallback={searchProductHandler} />
+      {productList}
+      <Paginator
+        hide={loading}
+        current={1}
+        searching={searching}
+        sorting={sorting}
+        changePageCallback={changePageHandler}
+        hasPrev={products.pagination ? !!products.pagination.prev : false}
+        hasNext={products.pagination ? !!products.pagination.next : false}
+      />
     </div>
   );
 };
