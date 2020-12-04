@@ -10,4 +10,4 @@
 6. Search using keywords
 7. Filter using dropdowns
 
-### _The API is assumed to hosted in loopback server (localhost)._
+### _The API server is assumed to hosted in loopback server (localhost)._
