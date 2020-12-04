@@ -3,8 +3,6 @@
 /.pnp
 .pnp.js
 .eslintcache
-.prettierrc
-.package-lock.json
 
 # testing
 /coverage
