@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AddProduct from './components/Product/AddProduct';
+import EditProduct from './components/Product/EditProduct';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={(props) => <App {...props} key={Date.now()} />}
+        />
+        <Route path="/addproduct" component={AddProduct}></Route>
+        <Route path="/editproduct/:id" component={EditProduct} />
+        <Route render={() => <h1>404 Error. Page Not found!</h1>} />
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
