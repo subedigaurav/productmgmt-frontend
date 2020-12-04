@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useForm } from "react-hook-form";
-import { Form, Button } from "react-bootstrap";
-import axios from "axios";
+import React, { useEffect, useState, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 const EditProduct = (props) => {
-  const [name, setName] = useState("");
-  const [code, setCode] = useState("");
-  const [category, setCategory] = useState("Food");
-  const [status, setStatus] = useState("Available");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [code, setCode] = useState(null);
+  const [category, setCategory] = useState('Food');
+  const [status, setStatus] = useState('Available');
+  const [description, setDescription] = useState('');
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -22,7 +22,9 @@ const EditProduct = (props) => {
 
   //* useCallback here to minimize the re-renders on setting states
   const loadData = useCallback(async () => {
-    let product = await axios.get(`http://localhost:5000/api/products/${props.match.params.id}`);
+    let product = await axios.get(
+      `http://localhost:5000/api/products/${props.match.params.id}`
+    );
     product = product.data;
     populateStates(product);
   }, [props.match.params]);
@@ -41,26 +43,35 @@ const EditProduct = (props) => {
       status: data.status,
       description: data.description,
     };
-    await axios.put(`http://localhost:5000/api/products/${props.match.params.id}`, newProduct);
-    props.history.push("/");
+    await axios.put(
+      `http://localhost:5000/api/products/${props.match.params.id}`,
+      newProduct
+    );
+    props.history.push('/');
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    props.history.push("/");
+    props.history.push('/');
   };
 
-  const form = (
+  //* refresh the page when the user clicks on the app name
+  const refreshPage = (e) => {
+    e.preventDefault();
+    props.history.replace('/');
+  };
+
+  const form = code && (
     <div>
       <div className="title">
-        <h2 style={{ fontWeight: "bold", color: "#222831", fontFamily: "PT Sans" }}>
-          PRODUCTS MANAGEMENT
+        <h2 onClick={refreshPage} className="appTitle">
+          PRODUCT MANAGEMENT APP
         </h2>
-        <h4 style={{ color: "#00adb5" }}>Edit Product</h4>
+        <h4 className="appSubTitle">Edit Product</h4>
       </div>
 
       <Form className="add-form" onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group style={{ marginBottom: "25px" }}>
+        <Form.Group style={{ marginBottom: '25px' }}>
           <Form.Label>Product Name</Form.Label>
           <Form.Control
             name="name"
@@ -71,12 +82,14 @@ const EditProduct = (props) => {
             onChange={(event) => setName(event.target.value)}
           ></Form.Control>
           {errors.name && (
-            <span style={{ color: "red", fontSize: "0.7rem", position: "absolute" }}>
+            <span
+              style={{ color: 'red', fontSize: '0.7rem', position: 'absolute' }}
+            >
               This field is required
             </span>
           )}
         </Form.Group>
-        <Form.Group style={{ marginBottom: "25px" }}>
+        <Form.Group style={{ marginBottom: '25px' }}>
           <Form.Label>Product Code</Form.Label>
           <Form.Control
             name="code"
@@ -87,7 +100,9 @@ const EditProduct = (props) => {
             onChange={(event) => setCode(event.target.value)}
           ></Form.Control>
           {errors.code && (
-            <span style={{ color: "red", fontSize: "0.7rem", position: "absolute" }}>
+            <span
+              style={{ color: 'red', fontSize: '0.7rem', position: 'absolute' }}
+            >
               This field is required
             </span>
           )}
@@ -120,7 +135,7 @@ const EditProduct = (props) => {
             <option>Unavailable</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group style={{ marginBottom: "25px" }}>
+        <Form.Group style={{ marginBottom: '25px' }}>
           <Form.Label>Product Description</Form.Label>
           <Form.Control
             name="description"
@@ -133,12 +148,21 @@ const EditProduct = (props) => {
         </Form.Group>
         {errors.description && (
           <span
-            style={{ color: "red", fontSize: "0.7rem", position: "absolute", marginTop: "-25px" }}
+            style={{
+              color: 'red',
+              fontSize: '0.7rem',
+              position: 'absolute',
+              marginTop: '-25px',
+            }}
           >
             Please provide description and less than 250 characters.
           </span>
         )}
-        <Button variant="primary" style={{ margin: "0px 10px 0px 0px" }} type="submit">
+        <Button
+          variant="primary"
+          style={{ margin: '0px 10px 0px 0px' }}
+          type="submit"
+        >
           Submit
         </Button>
         <Button variant="danger" onClick={handleCancel}>
