@@ -10,4 +10,4 @@
 6. Search using keywords
 7. Filter using dropdowns
 
-### _The API server is hosted in loopback server (localhost)._
+### _The API server is live at: https://productmgmt-frontend.herokuapp.com/_
