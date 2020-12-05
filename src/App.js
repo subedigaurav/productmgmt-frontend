@@ -18,8 +18,8 @@ const App = (props) => {
     setLoading(true);
     setSearching(false);
     setSorting(false);
-    setCurUrl('http://localhost:5000/api/products');
-    const result = await axios.get('http://localhost:5000/api/products');
+    setCurUrl(`${process.env.REACT_APP_API_URL}/products`);
+    const result = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
     setProducts(result.data);
     setLoading(false);
   };
@@ -34,7 +34,7 @@ const App = (props) => {
 
   const deleteProductHandler = async (id) => {
     setLoading(true);
-    await axios.delete(`http://localhost:5000/api/products/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`);
     fetchProducts();
     setLoading(false);
   };
@@ -44,10 +44,10 @@ const App = (props) => {
     setSorting(true);
     setSearching(false);
     setCurUrl(
-      `http://localhost:5000/api/search?field=${field}&value=${value}&sort=true`
+      `${process.env.REACT_APP_API_URL}/search?field=${field}&value=${value}&sort=true`
     );
     const sortedProducts = await axios.get(
-      `http://localhost:5000/api/search?field=${field}&value=${value}&sort=true`
+      `${process.env.REACT_APP_API_URL}/search?field=${field}&value=${value}&sort=true`
     );
     setProducts(sortedProducts.data);
     setLoading(false);
@@ -58,9 +58,9 @@ const App = (props) => {
     setSearching(true);
     setSorting(false);
     const result = await axios.get(
-      `http://localhost:5000/api/search?q=${query}`
+      `${process.env.REACT_APP_API_URL}/search?q=${query}`
     );
-    setCurUrl(`http://localhost:5000/api/search?q=${query}`);
+    setCurUrl(`${process.env.REACT_APP_API_URL}/search?q=${query}`);
     setProducts(result.data);
     setLoading(false);
   };

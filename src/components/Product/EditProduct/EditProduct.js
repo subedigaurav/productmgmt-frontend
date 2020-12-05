@@ -23,7 +23,7 @@ const EditProduct = (props) => {
   //* useCallback here to minimize the re-renders on setting states
   const loadData = useCallback(async () => {
     let product = await axios.get(
-      `http://localhost:5000/api/products/${props.match.params.id}`
+      `${process.env.REACT_APP_API_URL}/products/${props.match.params.id}`
     );
     product = product.data;
     populateStates(product);
@@ -44,7 +44,7 @@ const EditProduct = (props) => {
       description: data.description,
     };
     await axios.put(
-      `http://localhost:5000/api/products/${props.match.params.id}`,
+      `${process.env.REACT_APP_API_URL}/products/${props.match.params.id}`,
       newProduct
     );
     props.history.push('/');

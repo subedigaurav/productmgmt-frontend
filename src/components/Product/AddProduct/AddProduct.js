@@ -23,7 +23,7 @@ const SingleProduct = (props) => {
       description: data.description,
     };
 
-    await axios.post('http://localhost:5000/api/products', newProduct);
+    await axios.post(`${process.env.REACT_APP_API_URL}/products`, newProduct);
 
     props.history.push('/');
   };
