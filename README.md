@@ -10,4 +10,4 @@
 6. Search using keywords
 7. Filter using dropdowns
 
-### _The API server is live at: https://productmgmt-frontend.herokuapp.com/_
+### _The web app is live at: https://productmgmt-frontend.herokuapp.com_
